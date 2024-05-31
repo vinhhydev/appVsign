@@ -225,6 +225,12 @@ export default styles = StyleSheet.create({
       // fontFamily: 'DancingScript-Bold',
     },
   },
+
+  boxChat: {
+    position: 'absolute',
+    right: 10,
+    bottom: 30,
+  },
   dmcty: {
     body: {
       height: height * 0.93,

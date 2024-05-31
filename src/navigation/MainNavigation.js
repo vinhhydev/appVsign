@@ -187,6 +187,9 @@ function BhxhScreens() {
 // Stack Tư vấn thuế
 import Tuvanthue from '../screens/tuvanthue/Tuvanthue';
 import Message from '../screens/tuvanthue/Message';
+import Chat from '../screens/chat';
+import ListChat from '../screens/listchat';
+import FullImage from '../screens/fullImage';
 
 function TuvanthueScreens() {
   return (
@@ -217,6 +220,9 @@ function MainNavigation() {
       <Stack.Screen name={navigationStrings.KTRUIRO} component={Ktruiro} />
       <Stack.Screen name={navigationStrings.ACCOUNT} component={Account} />
       <Stack.Screen name={navigationStrings.BUSINESS} component={Nganh} />
+      <Stack.Screen name={navigationStrings.CHAT} component={Chat} />
+      <Stack.Screen name={navigationStrings.LISTCHAT} component={ListChat} />
+      <Stack.Screen name={navigationStrings.FULLIMAGE} component={FullImage} />
       {/* List stack screens */}
       <Stack.Screen name={navigationStrings.TVT} component={TuvanthueScreens} />
       <Stack.Screen name={navigationStrings.DMCTY} component={DmctyScreens} />

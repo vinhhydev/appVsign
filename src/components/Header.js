@@ -1,5 +1,5 @@
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import SearchInput from './SearchInput';
 import styles from '../themes/styles';
 import colors from '../themes/colors';
@@ -21,9 +21,10 @@ const Header = ({
   onChangeText,
   titleStyle = styles.title,
   duration = 0,
+  style = {},
 }) => {
   return (
-    <View style={styles.header}>
+    <View style={[styles.header, style]}>
       <TouchableOpacity onPress={onPressLeft}>
         <Icon name={leftIcon} size={iconSize} color={colorLeft}></Icon>
       </TouchableOpacity>

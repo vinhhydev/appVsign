@@ -23,7 +23,7 @@ import {Image} from '@rneui/base';
 
 const Home = () => {
   const navigation = useNavigation();
-  const {userData} = useData();
+  const {userData, userSupportChat} = useData();
 
   const images = [imagesPath.EBH_BN, imagesPath.EHD_BN, imagesPath.LOGO_VH];
 
@@ -179,6 +179,21 @@ const Home = () => {
                   <View style={styles.home.item}>
                     <Image style={styles.home.image} source={imagesPath.BHXH} />
                     <Text style={styles.home.text}>Bảo hiểm xã hội</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.home.itemCon}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate(
+                      userData.userName === userSupportChat
+                        ? navigationStrings.LISTCHAT
+                        : navigationStrings.CHAT,
+                    )
+                  }>
+                  <View style={styles.home.item}>
+                    <Image style={styles.home.image} source={imagesPath.CHAT} />
+                    <Text style={styles.home.text}>Hỗ trợ trực tuyến</Text>
                   </View>
                 </TouchableOpacity>
               </View>

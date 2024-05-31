@@ -60,4 +60,7 @@ export default {
   DKKD: 'Dangkykinhdoanh',
   EKS: 'Ekyso',
   BHXH: 'Bhxh',
+  CHAT: 'Chat',
+  LISTCHAT: 'ListChat',
+  FULLIMAGE: 'FullImage',
 };

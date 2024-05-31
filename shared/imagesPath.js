@@ -16,4 +16,5 @@ export default {
   DEFAULT: require('../assets/defaultImage.png'),
   EBH_BN: require('../assets/ebhBanner.png'),
   EHD_BN: require('../assets/ehdBanner.png'),
+  CHAT: require('../assets/online-chat.png'),
 };
