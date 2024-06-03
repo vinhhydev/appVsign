@@ -6,6 +6,7 @@ import {
   Image,
   Keyboard,
   KeyboardAvoidingView,
+  Platform,
   SafeAreaView,
   StyleSheet,
   TextInput,
@@ -59,7 +60,7 @@ const Chat = ({route}: any) => {
   const paramUserName = route?.params?.userName;
   const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [useKeyboard, setUseKeyboard] = useState(false);
+  const [useKeyboard, setUseKeyboard] = useState(true);
   const isFocused = useIsFocused();
   useEffect(() => {
     createRoom();
@@ -91,7 +92,7 @@ const Chat = ({route}: any) => {
     const keyboardDidHideListener = Keyboard.addListener(
       'keyboardDidHide',
       () => {
-        setUseKeyboard(false); // or some other action
+        if (Platform.OS === 'android') setUseKeyboard(false); // or some other action
       },
     );
 
