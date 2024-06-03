@@ -5,15 +5,10 @@ import {
   FlatList,
   Image,
   KeyboardAvoidingView,
-  LayoutAnimation,
-  Platform,
   SafeAreaView,
-  StatusBar,
   StyleSheet,
-  Text,
   TextInput,
   TouchableOpacity,
-  UIManager,
   View,
 } from 'react-native';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
@@ -123,8 +118,7 @@ const Chat = ({route}: any) => {
       if (responseImage.length > 0) {
         await Promise.all(
           responseImage.map(async val => {
-            const fileType = val.mime.indexOf('image') > -1 ? 'image' : 'video';
-            await uploadImage(val.path, fileType);
+            await uploadFile(val.path, val.mime);
           }),
         );
       } else {
@@ -154,6 +148,7 @@ const Chat = ({route}: any) => {
       multiple: true,
       waitAnimationEnd: false,
       sortOrder: 'desc',
+      includeBase64: true,
       forceJpg: true,
     })
       .then(images => {
@@ -180,13 +175,13 @@ const Chat = ({route}: any) => {
     setResponseImage(newImages);
   };
 
-  const uploadImage = async (uri: string, fileType: string) => {
-    console.log('FILĘ', fileType);
-
+  const uploadFile = async (uri: string, fileType: string) => {
     const response = await fetch(uri);
     const blob = await response.blob();
     const storageRef = ref(storage, 'Chat/' + new Date().getTime());
-    const uploadTask = uploadBytesResumable(storageRef, blob);
+    const uploadTask = uploadBytesResumable(storageRef, blob, {
+      contentType: fileType,
+    });
     console.log('UPLOAD', uploadTask);
 
     // listen for events
@@ -206,7 +201,8 @@ const Chat = ({route}: any) => {
         getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
           console.log('File available at', downloadURL);
           // save record
-          await saveRecord(fileType, downloadURL);
+          const type = fileType.indexOf('image') > -1 ? 'image' : 'video';
+          await saveRecord(type, downloadURL);
         });
       },
     );

@@ -1,20 +1,9 @@
-import {
-  ActivityIndicator,
-  Dimensions,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {ActivityIndicator, SafeAreaView, StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
 import FastImage from 'react-native-fast-image';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import colors from '../../themes/colors';
 import Video from 'react-native-video';
-import WebView from 'react-native-webview';
 import Header from '../../components/Header';
-const WINDOW = Dimensions.get('screen');
 const FullImage = ({route, navigation}: any) => {
   const {url, type} = route?.params;
   const [showLoading, setShowLoading] = useState(true);
@@ -43,6 +32,7 @@ const FullImage = ({route, navigation}: any) => {
             source={{uri: url}}
             style={styles.videoFullScreen}
             resizeMode="contain"
+            volume={100}
             controls
             onLoadStart={() => {
               setShowLoading(false);

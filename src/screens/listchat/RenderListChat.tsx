@@ -6,7 +6,6 @@ import {useNavigation} from '@react-navigation/native';
 import navigationStrings from '../../../shared/navigationStrings';
 import {useData} from '../../navigation/DataContext';
 import {doc, updateDoc} from 'firebase/firestore';
-
 import {db} from '../../../firebaseConfig';
 
 const RenderListChat = (props: DataListMess) => {

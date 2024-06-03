@@ -3,7 +3,6 @@ import {
   FlatList,
   SafeAreaView,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
@@ -64,7 +63,11 @@ const ListChat = () => {
               userName: val.data().userName,
               name: docData.data().customerName,
               lastMessage:
-                val.data().message.length > 0 ? val.data().message : 'Hình ảnh',
+                val.data().message.length > 0
+                  ? val.data().message
+                  : val.data().type === 'image'
+                  ? 'Hình ảnh'
+                  : 'Video',
               createAt: val.data().createAt,
               checkNew:
                 userData.userName === val.data().userName
