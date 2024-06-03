@@ -4,6 +4,7 @@ import {
   Dimensions,
   FlatList,
   Image,
+  Keyboard,
   KeyboardAvoidingView,
   SafeAreaView,
   StyleSheet,
@@ -25,7 +26,6 @@ import {
   addDoc,
   collection,
   doc,
-  limit,
   onSnapshot,
   orderBy,
   query,
@@ -36,6 +36,7 @@ import ImagePicker, {ImageOrVideo} from 'react-native-image-crop-picker';
 import * as Progress from 'react-native-progress';
 import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage';
 import {showAlert} from '../../components/notifications/showAlert';
+
 const WINDOW = Dimensions.get('screen');
 
 export type DataMessage = {
@@ -58,6 +59,7 @@ const Chat = ({route}: any) => {
   const paramUserName = route?.params?.userName;
   const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [useKeyboard, setUseKeyboard] = useState(false);
   const isFocused = useIsFocused();
   useEffect(() => {
     createRoom();
@@ -79,7 +81,25 @@ const Chat = ({route}: any) => {
     });
     return unsub;
   }, [isFocused]);
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setUseKeyboard(true); // or some other action
+      },
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setUseKeyboard(false); // or some other action
+      },
+    );
 
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
   const createRoom = async () => {
     const roomId = getRoomId(userData.userName, userSupportChat);
     if (userData.userName !== userSupportChat) {
@@ -233,8 +253,11 @@ const Chat = ({route}: any) => {
   };
 
   return (
-    <SafeAreaView style={{position: 'relative'}}>
-      <KeyboardAvoidingView behavior={'height'}>
+    <SafeAreaView>
+      <KeyboardAvoidingView
+        enabled={useKeyboard}
+        behavior={'height'}
+        keyboardVerticalOffset={15}>
         <View style={styles.container}>
           <Header
             title={
