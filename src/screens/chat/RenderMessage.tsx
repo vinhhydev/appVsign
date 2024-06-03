@@ -12,6 +12,7 @@ import FastImage from 'react-native-fast-image';
 import {useNavigation} from '@react-navigation/native';
 import navigationStrings from '../../../shared/navigationStrings';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Video from 'react-native-video';
 
 type DataProp = {
   data: ListRenderItemInfo<DataMessage>;
@@ -37,19 +38,30 @@ const RenderMessage = ({data, userName}: DataProp) => {
               },
             } as never)
           }>
-          <FastImage
-            source={{
-              uri: data.item.path,
-            }}
-            resizeMode="cover"
-            style={styles.imageMess}
-          />
-          {data.item.type === 'video' && (
-            <Icon
-              name="play-arrow"
-              size={30}
-              style={styles.iconPlay}
-              color={colors.BLACK}
+          {data.item.type === 'video' ? (
+            <>
+              <Video
+                source={{
+                  uri: data.item.path,
+                }}
+                paused
+                resizeMode="cover"
+                style={styles.imageMess}
+              />
+              <Icon
+                name="play-arrow"
+                size={30}
+                style={styles.iconPlay}
+                color={colors.BLACK}
+              />
+            </>
+          ) : (
+            <FastImage
+              source={{
+                uri: data.item.path,
+              }}
+              resizeMode="cover"
+              style={styles.imageMess}
             />
           )}
         </TouchableOpacity>

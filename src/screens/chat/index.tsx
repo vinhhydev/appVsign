@@ -4,10 +4,16 @@ import {
   Dimensions,
   FlatList,
   Image,
+  KeyboardAvoidingView,
+  LayoutAnimation,
+  Platform,
+  SafeAreaView,
+  StatusBar,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  UIManager,
   View,
 } from 'react-native';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
@@ -175,6 +181,8 @@ const Chat = ({route}: any) => {
   };
 
   const uploadImage = async (uri: string, fileType: string) => {
+    console.log('FILĘ', fileType);
+
     const response = await fetch(uri);
     const blob = await response.blob();
     const storageRef = ref(storage, 'Chat/' + new Date().getTime());
@@ -227,105 +235,113 @@ const Chat = ({route}: any) => {
       Alert.alert('Lỗi', error as any);
     }
   };
+
   return (
-    <View style={styles.container}>
-      <Header
-        title={
-          paramUserName && paramUserName !== undefined
-            ? paramUserName
-            : 'Hỗ trợ trực tuyến'
-        }
-        onPressLeft={() => navigation.goBack()}
-        onPressRight={undefined}
-        keyword={undefined}
-        onChangeText={undefined}
-      />
-      <Progress.Bar
-        progress={progress}
-        width={WINDOW.width}
-        height={3}
-        borderRadius={0}
-        borderWidth={0}
-      />
-      {loading ? (
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: colors.GRAY,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <ActivityIndicator size={35} />
-        </View>
-      ) : (
-        <FlatList
-          data={dataMessage}
-          keyExtractor={(_: any, index: number) => `message-${index}`}
-          renderItem={data => (
-            <RenderMessage data={data} userName={userData.userName} />
-          )}
-          style={{flex: 1, backgroundColor: colors.GRAY}}
-          contentContainerStyle={styles.viewChat}
-          inverted={true}
-          showsVerticalScrollIndicator={false}
-        />
-      )}
-      <View style={styles.viewInput}>
-        {responseImage.length > 0 ? (
-          <View style={styles.viewPickImage}>
-            {responseImage.map((item, index) => {
-              return (
-                <View
-                  key={`select-${index}`}
-                  style={{paddingHorizontal: 5, position: 'relative'}}>
-                  <Image
-                    resizeMode="cover"
-                    resizeMethod="scale"
-                    style={styles.imagePick}
-                    source={{uri: item.path}}
-                  />
-                  <TouchableOpacity
-                    style={styles.iconClose}
-                    onPress={() => handleDeleteImage(index)}>
-                    <Icon name="close" size={20} color={colors.BLACK} />
-                  </TouchableOpacity>
-                </View>
-              );
-            })}
-          </View>
-        ) : (
-          <TextInput
-            ref={inputRef}
-            placeholder="Soạn văn bản..."
-            style={styles.inputMess}
-            onChangeText={val => setMessage(val)}
-            multiline
+    <SafeAreaView style={{position: 'relative'}}>
+      <KeyboardAvoidingView behavior={'height'}>
+        <View style={styles.container}>
+          <Header
+            title={
+              paramUserName && paramUserName !== undefined
+                ? paramUserName
+                : 'Hỗ trợ trực tuyến'
+            }
+            onPressLeft={() => navigation.goBack()}
+            onPressRight={undefined}
+            keyword={undefined}
+            onChangeText={undefined}
           />
-        )}
-        <View
-          style={[styles.viewTouch, responseImage.length > 0 && styles.fixTop]}>
-          <TouchableOpacity
-            style={styles.touchImage}
-            onPress={handlePickerImage}>
-            <Icon name="image" size={25} color={colors.BLACK} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.touchSendMess}
-            disabled={message.length <= 0 && responseImage.length <= 0}
-            onPress={handleSendMessage}>
-            <Icon
-              name="send"
-              size={25}
-              color={
-                message.length <= 0 && responseImage.length <= 0
-                  ? colors.BLACK_GRAY
-                  : colors.BLACK
-              }
+          <Progress.Bar
+            progress={progress}
+            width={WINDOW.width}
+            height={3}
+            borderRadius={0}
+            borderWidth={0}
+          />
+          {loading ? (
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: colors.GRAY,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <ActivityIndicator size={35} />
+            </View>
+          ) : (
+            <FlatList
+              data={dataMessage}
+              keyExtractor={(_: any, index: number) => `message-${index}`}
+              renderItem={data => (
+                <RenderMessage data={data} userName={userData.userName} />
+              )}
+              style={{flex: 1, backgroundColor: colors.GRAY}}
+              contentContainerStyle={styles.viewChat}
+              inverted={true}
+              showsVerticalScrollIndicator={false}
             />
-          </TouchableOpacity>
+          )}
+          <View style={styles.viewInput}>
+            {responseImage.length > 0 ? (
+              <View style={styles.viewPickImage}>
+                {responseImage.map((item, index) => {
+                  return (
+                    <View
+                      key={`select-${index}`}
+                      style={{paddingHorizontal: 5, position: 'relative'}}>
+                      <Image
+                        resizeMode="cover"
+                        resizeMethod="scale"
+                        style={styles.imagePick}
+                        source={{uri: item.path}}
+                      />
+                      <TouchableOpacity
+                        style={styles.iconClose}
+                        onPress={() => handleDeleteImage(index)}>
+                        <Icon name="close" size={20} color={colors.BLACK} />
+                      </TouchableOpacity>
+                    </View>
+                  );
+                })}
+              </View>
+            ) : (
+              <TextInput
+                ref={inputRef}
+                placeholder="Soạn văn bản..."
+                style={styles.inputMess}
+                onChangeText={val => setMessage(val)}
+                multiline
+              />
+            )}
+            <View
+              style={[
+                styles.viewTouch,
+                responseImage.length > 0 && styles.fixTop,
+              ]}>
+              <TouchableOpacity
+                style={styles.touchImage}
+                onPress={handlePickerImage}>
+                <Icon name="image" size={25} color={colors.BLACK} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.touchSendMess}
+                disabled={message.length <= 0 && responseImage.length <= 0}
+                onPress={handleSendMessage}>
+                <Icon
+                  name="send"
+                  size={25}
+                  color={
+                    message.length <= 0 && responseImage.length <= 0
+                      ? colors.BLACK_GRAY
+                      : colors.BLACK
+                  }
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
-      </View>
-    </View>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 
@@ -334,7 +350,7 @@ export default Chat;
 const styles = StyleSheet.create({
   container: {
     width: WINDOW.width,
-    height: WINDOW.height,
+    height: WINDOW.height - 80,
     flexShrink: 1,
   },
   viewChat: {

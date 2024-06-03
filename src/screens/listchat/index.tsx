@@ -1,4 +1,11 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Header from '../../components/Header';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
@@ -27,7 +34,7 @@ export type DataListMess = {
   checkNew: boolean;
   createAt: string;
 };
-
+const WINDOW = Dimensions.get('screen');
 const ListChat = () => {
   const {userData} = useData();
   const navigation = useNavigation();
@@ -79,29 +86,31 @@ const ListChat = () => {
   }, [listMess]);
 
   return (
-    <View style={styles.container}>
-      <Header
-        title={'Tin nhắn'}
-        onPressLeft={() => navigation.goBack()}
-        onPressRight={undefined}
-        keyword={undefined}
-        onChangeText={undefined}
-        style={styles.backgroundHeader}
-      />
-      {loading ? (
-        <ActivityIndicator size={35} />
-      ) : (
-        <FlatList
-          data={listMess}
-          keyExtractor={(_, index) => `listRoom-${index}`}
-          renderItem={({item}) => <RenderListChat {...item} />}
-          contentContainerStyle={{
-            paddingHorizontal: 15,
-            paddingVertical: 15,
-          }}
+    <SafeAreaView>
+      <View style={styles.container}>
+        <Header
+          title={'Tin nhắn'}
+          onPressLeft={() => navigation.goBack()}
+          onPressRight={undefined}
+          keyword={undefined}
+          onChangeText={undefined}
+          style={styles.backgroundHeader}
         />
-      )}
-    </View>
+        {loading ? (
+          <ActivityIndicator size={35} />
+        ) : (
+          <FlatList
+            data={listMess}
+            keyExtractor={(_, index) => `listRoom-${index}`}
+            renderItem={({item}) => <RenderListChat {...item} />}
+            contentContainerStyle={{
+              paddingHorizontal: 15,
+              paddingVertical: 15,
+            }}
+          />
+        )}
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -109,7 +118,8 @@ export default ListChat;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    width: WINDOW.width,
+    height: WINDOW.height,
     flexShrink: 1,
   },
   backgroundHeader: {

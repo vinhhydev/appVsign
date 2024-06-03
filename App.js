@@ -7,6 +7,13 @@ import SplashScreen from 'react-native-splash-screen';
 import Toast from 'react-native-toast-message';
 import 'react-native-get-random-values';
 import {useEffect} from 'react';
+import {NativeModules, Platform} from 'react-native';
+
+if (Platform.OS === 'ios') {
+  if (__DEV__) {
+    NativeModules.DevSettings.setIsDebuggingRemotely(false);
+  }
+}
 
 const App = () => {
   useEffect(() => {
