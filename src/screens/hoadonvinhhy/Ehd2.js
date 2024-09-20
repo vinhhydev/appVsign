@@ -18,7 +18,7 @@ import axios from 'axios';
 import {listDoiTuong, listHTTT} from '../../../shared/dropdownData';
 import navigationStrings from '../../../shared/navigationStrings';
 import wsStrings from '../../../shared/wsStrings';
-import {ehdUrl} from '../../../shared/url';
+import {ehdMSVUrl, ehdUrl} from '../../../shared/url';
 // Components
 import CustomButton, {DeleteButton} from '../../components/CustomButton';
 import {CalendarModal, CustomModal} from '../../components/CustomModal';
@@ -243,7 +243,7 @@ const Ehd2 = () => {
 
   const openPdf = async () => {
     await axios
-      .post(ehdUrl + wsStrings.VIEWINVOICE, {
+      .post(ehdMSVUrl + wsStrings.VIEWINVOICE, {
         mahoadon: route.params.item.mahoadon,
       })
       .then(response => {
@@ -268,7 +268,7 @@ const Ehd2 = () => {
 
   const getEhoadon0 = async () => {
     await axios
-      .post(ehdUrl + wsStrings.GETINVOICE0, {
+      .post(ehdMSVUrl + wsStrings.GETINVOICE0, {
         user: route.params.mst,
         pwd: route.params.pass_ehd,
         stt: route.params.item.Stt,
@@ -323,7 +323,7 @@ const Ehd2 = () => {
 
   const getHsmInfo = async () => {
     await axios
-      .post(ehdUrl + wsStrings.GETUSERINFO, {
+      .post(ehdMSVUrl + wsStrings.GETUSERINFO, {
         user: route.params.mst,
         pwd: route.params.pass_ehd,
       })
@@ -343,7 +343,7 @@ const Ehd2 = () => {
 
   const getTbph = async () => {
     await axios
-      .post(ehdUrl + wsStrings.GETTBPH, {
+      .post(ehdMSVUrl + wsStrings.GETTBPH, {
         user: route.params.mst,
         pwd: route.params.pass_ehd,
       })
@@ -370,7 +370,7 @@ const Ehd2 = () => {
 
   const importInvoice = async data => {
     await axios
-      .post(ehdUrl + wsStrings.IMPORTINVOICE, {
+      .post(ehdMSVUrl + wsStrings.IMPORTINVOICE, {
         user: route.params.mst,
         pwd: decode(route.params.pass_ehd),
         data: data,
@@ -395,7 +395,7 @@ const Ehd2 = () => {
 
   const updateInvoice = async data => {
     await axios
-      .post(ehdUrl + wsStrings.UPDATEINVOICE, {
+      .post(ehdMSVUrl + wsStrings.UPDATEINVOICE, {
         user: route.params.mst,
         pwd: decode(route.params.pass_ehd),
         data: data,

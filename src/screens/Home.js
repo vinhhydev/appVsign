@@ -54,7 +54,7 @@ const Home = () => {
       imageStyle={{resizeMode: 'stretch'}}
       blurRadius={10}
       source={imagesPath.BG}>
-      <SafeAreaView>
+      <SafeAreaView style={{flex: 1}}>
         <View style={styles.header}>
           <TouchableOpacity
             onPress={() => navigation.navigate(navigationStrings.ACCOUNT)}>
@@ -69,7 +69,7 @@ const Home = () => {
               color={colors.MAINCOLOR}></Icon>
           </TouchableOpacity>
         </View>
-        <ScrollView>
+        <ScrollView style={{flex: 1}}>
           {/* <View style={styles.home.bannerCon}>
             <Banner data={images} />
           </View> */}
@@ -182,7 +182,7 @@ const Home = () => {
                   </View>
                 </TouchableOpacity>
               </View>
-              <View style={styles.home.itemCon}>
+              {/* <View style={styles.home.itemCon}>
                 <TouchableOpacity
                   onPress={() =>
                     navigation.navigate(
@@ -194,6 +194,29 @@ const Home = () => {
                   <View style={styles.home.item}>
                     <Image style={styles.home.image} source={imagesPath.CHAT} />
                     <Text style={styles.home.text}>Hỗ trợ trực tuyến</Text>
+                  </View>
+                </TouchableOpacity>
+              </View> */}
+            </View>
+          </Animated.View>
+          <Animated.View
+            entering={FadeInDown.duration(1000)}
+            style={styles.home.titleField}>
+            <View style={styles.home.titleCon}>
+              <Text style={styles.home.title}>Phần mềm</Text>
+            </View>
+            <View style={styles.home.content}>
+              <View style={styles.home.itemCon}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate(navigationStrings.LOGINACC2k)
+                  }>
+                  <View style={styles.home.item}>
+                    <Image
+                      style={styles.home.image}
+                      source={imagesPath.FAVORITES}
+                    />
+                    <Text style={styles.home.text}>Acc2k</Text>
                   </View>
                 </TouchableOpacity>
               </View>

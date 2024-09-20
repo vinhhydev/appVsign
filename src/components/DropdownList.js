@@ -37,6 +37,7 @@ const DropdownList = ({
         </View>
       ) : (
         <Dropdown
+          dropdownPosition="auto"
           data={data}
           disable={disable}
           placeholder={placeholder}

@@ -190,6 +190,11 @@ import Message from '../screens/tuvanthue/Message';
 import Chat from '../screens/chat';
 import ListChat from '../screens/listchat';
 import FullImage from '../screens/fullImage';
+import Acc2k from '../screens/Acc2k';
+import DetailAcc2k from '../screens/Acc2k/DetailAcc2k';
+import FormBaoCao from '../screens/Acc2k/FormBaoCao';
+import LoginAcc2k from '../screens/Acc2k/LoginAcc2k';
+import LoadMoreList from '../screens/Acc2k/LoadMoreList';
 
 function TuvanthueScreens() {
   return (
@@ -223,6 +228,23 @@ function MainNavigation() {
       <Stack.Screen name={navigationStrings.CHAT} component={Chat} />
       <Stack.Screen name={navigationStrings.LISTCHAT} component={ListChat} />
       <Stack.Screen name={navigationStrings.FULLIMAGE} component={FullImage} />
+      <Stack.Screen name={navigationStrings.ACC2k} component={Acc2k} />
+      <Stack.Screen
+        name={navigationStrings.FORMBAOCAO}
+        component={FormBaoCao}
+      />
+      <Stack.Screen
+        name={navigationStrings.DETAIL_ACC2K}
+        component={DetailAcc2k}
+      />
+      <Stack.Screen
+        name={navigationStrings.LOGINACC2k}
+        component={LoginAcc2k}
+      />
+      <Stack.Screen
+        name={navigationStrings.LOADMORELIST}
+        component={LoadMoreList}
+      />
       {/* List stack screens */}
       <Stack.Screen name={navigationStrings.TVT} component={TuvanthueScreens} />
       <Stack.Screen name={navigationStrings.DMCTY} component={DmctyScreens} />

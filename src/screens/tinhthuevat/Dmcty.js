@@ -6,10 +6,7 @@ import {
   View,
   Alert,
 } from 'react-native';
-import {
-  activateKeepAwake,
-  deactivateKeepAwake,
-} from '@sayem314/react-native-keep-awake';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Animated, {FadeIn, FadeOut} from 'react-native-reanimated';
@@ -429,7 +426,7 @@ const Dmcty = () => {
           showAlert('success', 'Vui lòng đợi trong giây lát....');
           setIsLoading(true);
           getTokhai();
-          activateKeepAwake();
+          // activateKeepAwake();
         } else if (res == '1') {
           showAlert('success', 'Server đang phản hồi');
         }
@@ -514,7 +511,7 @@ const Dmcty = () => {
         await AsyncStorage.setItem('process', '0');
         type == 'C22' && setThueModalVisible(false);
         setIsLoading(false);
-        deactivateKeepAwake();
+        // deactivateKeepAwake();
       });
   };
 

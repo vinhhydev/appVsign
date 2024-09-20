@@ -21,6 +21,7 @@ import colors from '../../themes/colors';
 // Components
 import {showAlert} from '../../components/notifications/showAlert';
 import Header from '../../components/Header';
+import {useAppDispatch} from '../../redux/hook';
 
 const Thuedientu = () => {
   const navigation = useNavigation();

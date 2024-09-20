@@ -19,7 +19,7 @@ export default styles = StyleSheet.create({
     backgroundColor: colors.TRANSPARENT,
   },
   header: {
-    height: height * 0.07,
+    height: 60,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

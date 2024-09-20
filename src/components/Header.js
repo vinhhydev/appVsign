@@ -36,7 +36,9 @@ const Header = ({
           style={{width: 300, height: 40, backgroundColor: colors.WHITE}}
           rightIcon={false}></SearchInput>
       ) : (
-        <Text style={titleStyle}>{title}</Text>
+        <Text style={titleStyle} numberOfLines={1}>
+          {title}
+        </Text>
       )}
       <TouchableOpacity onPress={onPressRight} disabled={disableRight}>
         <Icon name={rightIcon} size={iconSize} color={colorRight}></Icon>

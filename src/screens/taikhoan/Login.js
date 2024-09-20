@@ -29,6 +29,7 @@ import styles from '../../themes/styles';
 import debounce from 'lodash/debounce';
 import {encode, decode} from 'base-64';
 import axios from 'axios';
+import getJSONByAPI from '../../utils/convertXML';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -91,13 +92,23 @@ const Login = () => {
 
   const checkLogin = debounce(async () => {
     await axios
-      .post(ehdUrl + wsStrings.VSIGN_LOGIN, {
-        username: userName,
-        password: encode(pwd),
-        version: version,
-      })
+      .post(
+        `${ehdUrl}${wsStrings.VSIGN_LOGIN}`,
+        {
+          username: userName,
+          password: encode(pwd),
+          version: version,
+        },
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        },
+      )
       .then(response => {
-        const res = JSON.parse(response.data.d);
+        const res = getJSONByAPI(response.data);
+
         if (res.Status == 'Ok') {
           handleLogin(res);
         } else if (
@@ -117,7 +128,7 @@ const Login = () => {
       });
   }, 800);
 
-  const handleLogin = async res => {
+  const handleLogin = async () => {
     const userInfo = await getAccountInfo(userName, encode(pwd));
     updateUserData({
       userName: userName,
@@ -128,14 +139,14 @@ const Login = () => {
       phone: userInfo[0].tel,
     });
     if (storeAccount == true) {
-      storeData(res);
+      storeData();
     } else {
       await AsyncStorage.setItem('store_account', 'false');
-      homeNavigate(res);
+      homeNavigate();
     }
   };
 
-  const storeData = async res => {
+  const storeData = async () => {
     try {
       const storedUsername = await AsyncStorage.getItem('userName');
       if (storedUsername != userName) {
@@ -144,7 +155,7 @@ const Login = () => {
       await AsyncStorage.setItem('userName', userName);
       await AsyncStorage.setItem('pwd', encode(pwd));
       await AsyncStorage.setItem('store_account', 'true');
-      homeNavigate(res);
+      homeNavigate();
     } catch (e) {
       Alert.alert('Thông báo', 'Không thể lưu password' + e.message);
     }

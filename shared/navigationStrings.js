@@ -42,6 +42,13 @@ export default {
   // Tư vấn thuế
   MESSAGE: 'Message',
 
+  // Phần mềm
+  ACC2k: 'Acc2k',
+  DETAIL_ACC2K: 'detailAcc2k',
+  FORMBAOCAO: 'FormBaoCao',
+  LOGINACC2k: 'LoginAcc2k',
+  LOADMORELIST: 'LoadMoreList',
+
   // Main
   LOGIN: 'Login',
   REGISTER: 'Register',

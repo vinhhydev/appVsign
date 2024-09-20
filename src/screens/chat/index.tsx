@@ -13,7 +13,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import colors from '../../themes/colors';
 import Header from '../../components/Header';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
@@ -62,6 +62,7 @@ const Chat = ({route}: any) => {
   const [loading, setLoading] = useState(true);
   const [useKeyboard, setUseKeyboard] = useState(true);
   const isFocused = useIsFocused();
+
   useEffect(() => {
     createRoom();
     const roomId =
@@ -82,6 +83,7 @@ const Chat = ({route}: any) => {
     });
     return unsub;
   }, [isFocused]);
+
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',

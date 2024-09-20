@@ -75,4 +75,13 @@ export default {
   DKKD_UNCALL: 'dangkykinhdoanh_uncall',
   DKKD_TRACUU: 'dangkykinhdoanh',
   DKKD_XEMPDF: 'dangkykinhdoanh_xem',
+  //Phần mềm
+  //-----------------Acc2k
+  CHECKLOGIN: 'checkLogin', //Login Acc2k
+  GETBAOCAO: 'getBaocao', // get báo cáo con ACC2k
+  GETDATA: 'getData', // get danh sách công ty
+  GETDMDT: 'getDmdt', // get
+  GETDMTK: 'getDmtk',
+  GETDMVT: 'getDmvt',
+  GETDMTHUE: 'getDmthue',
 };

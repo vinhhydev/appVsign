@@ -15,7 +15,7 @@ import {searchObjects} from '../../utils/searchObject';
 import {PinInput} from 'react-native-form-component';
 import wsStrings from '../../../shared/wsStrings';
 import React, {useEffect, useState} from 'react';
-import {ehdUrl} from '../../../shared/url';
+import {ehdMSVUrl, ehdUrl} from '../../../shared/url';
 import styles from '../../themes/styles';
 import colors from '../../themes/colors';
 import moment from 'moment-timezone';
@@ -203,7 +203,7 @@ const Ehd1 = () => {
 
   const getInvoice = async () => {
     await axios
-      .post(ehdUrl + wsStrings.GETINVOICE, {
+      .post(ehdMSVUrl + wsStrings.GETINVOICE, {
         user: route.params.mst,
         pwd: route.params.pass_ehd,
         tu_ngay: moment(startDate).format('YYYY-MM-DD'),
@@ -241,7 +241,7 @@ const Ehd1 = () => {
 
   const signInvoice = async () => {
     await axios
-      .post(ehdUrl + wsStrings.SIGNINVOICE, {
+      .post(ehdMSVUrl + wsStrings.SIGNINVOICE, {
         user: route.params.mst,
         pwd: route.params.pass_ehd,
         stt: encode(sttHd),
@@ -279,7 +279,7 @@ const Ehd1 = () => {
 
   const deleteInvoice = async item => {
     await axios
-      .post(ehdUrl + wsStrings.DELETEINVOICE, {
+      .post(ehdMSVUrl + wsStrings.DELETEINVOICE, {
         user: route.params.mst,
         pwd: route.params.pass_ehd,
         matracuu: item.mahoadon,
@@ -310,7 +310,7 @@ const Ehd1 = () => {
 
   const getUserInfo = async () => {
     await axios
-      .post(ehdUrl + wsStrings.GETUSERINFO, {
+      .post(ehdMSVUrl + wsStrings.GETUSERINFO, {
         user: route.params.mst,
         pwd: route.params.pass_ehd,
       })
