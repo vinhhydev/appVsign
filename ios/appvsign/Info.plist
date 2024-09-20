@@ -42,9 +42,9 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Ứng dụng cần quyền truy cập vị trí của bạn</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>Để sử dụng tính năng hình ảnh, ứng dụng cần quyền truy cập thư viện ảnh</string>
 
 	<key>UIAppFonts</key>
 	<array>
