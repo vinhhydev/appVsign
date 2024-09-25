@@ -75,6 +75,7 @@ export default {
   DKKD_UNCALL: 'dangkykinhdoanh_uncall',
   DKKD_TRACUU: 'dangkykinhdoanh',
   DKKD_XEMPDF: 'dangkykinhdoanh_xem',
+
   //Phần mềm
   //-----------------Acc2k
   CHECKLOGIN: 'checkLogin', //Login Acc2k
@@ -84,4 +85,7 @@ export default {
   GETDMTK: 'getDmtk',
   GETDMVT: 'getDmvt',
   GETDMTHUE: 'getDmthue',
+  SP_VAT: 'sp_vat',
+  VATVAO_XLS: 'vatvao_xls',
+  GETFILE: 'getFile',
 };

@@ -11,7 +11,6 @@ import Header from '../../components/Header';
 import {useNavigation} from '@react-navigation/native';
 import {useAppDispatch, useAppSelector} from '../../redux/hook';
 import {RootState} from '../../redux/store';
-import {getLoadMore} from '../../redux/slices/acc2kSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   IAccountAcc2k,
@@ -24,6 +23,7 @@ import {Input} from '@rneui/base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import removeDiacritics from '../../utils/removeDiacritics';
 import {FlashList, ListRenderItemInfo} from '@shopify/flash-list';
+import {getLoadMore} from '../../redux/action/acc2k';
 
 type PropFlatList = {
   data: ListRenderItemInfo<

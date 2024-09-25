@@ -18,17 +18,14 @@ import Header from '../../components/Header';
 import {useNavigation} from '@react-navigation/native';
 import {showAlert} from '../../components/notifications/showAlert';
 import {useAppDispatch, useAppSelector} from '../../redux/hook';
-import {
-  getDataCty,
-  loginAcc2k,
-  selectData,
-} from '../../redux/slices/acc2kSlice';
+import {selectData} from '../../redux/slices/acc2kSlice';
 import {RootState} from '../../redux/store';
 import navigationStrings from '../../../shared/navigationStrings';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {CustomModal} from '../../components/CustomModal';
 import DropdownList from '../../components/DropdownList';
-import {IDropdownList} from '../../type/IAcc2k';
+import {IAccountAcc2k, IDropdownList} from '../../type/IAcc2k';
+import {getDataCty, loginAcc2k} from '../../redux/action/acc2k';
 
 const {width, height} = Dimensions.get('screen');
 const LoginAcc2k = () => {
@@ -71,8 +68,6 @@ const LoginAcc2k = () => {
             });
           });
           setListDataCty(listTemp);
-        } else {
-          showAlert('error', 'Thông tin đăng nhập không đúng');
         }
       });
     }
@@ -100,7 +95,7 @@ const LoginAcc2k = () => {
       setErrorData('');
       const data = acc2kState.selectData.data as string;
       dispatch(loginAcc2k({phoneNumber, password, data}));
-      const accountAcc2k = {
+      const accountAcc2k: IAccountAcc2k = {
         phoneNumber,
         password,
       };

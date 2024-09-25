@@ -15,9 +15,10 @@ import colors from '../../themes/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import navigationStrings from '../../../shared/navigationStrings';
 import {useAppDispatch, useAppSelector} from '../../redux/hook';
-import {getBaoCao} from '../../redux/slices/acc2kSlice';
+
 import {IDataBaoCao} from '../../type/IAcc2k';
 import {RootState} from '../../redux/store';
+import {getBaoCao} from '../../redux/action/acc2k';
 
 const DetailAcc2k = ({route}: any) => {
   const navigation = useNavigation();

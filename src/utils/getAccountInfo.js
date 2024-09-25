@@ -21,7 +21,7 @@ export const getAccountInfo = async (username, pwd) => {
     );
 
     if (response.data) {
-      const res = getJSONByAPI(response.data);
+      const res = response.data;
       if (res) {
         return res;
       } else {
