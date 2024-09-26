@@ -45,7 +45,6 @@
 	<string>Ứng dụng cần quyền truy cập vị trí của bạn</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Để sử dụng tính năng hình ảnh, ứng dụng cần quyền truy cập thư viện ảnh</string>
-
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
@@ -68,6 +67,11 @@
 		<string>DancingScript-Medium.ttf</string>
 		<string>DancingScript-Regular.ttf</string>
 		<string>DancingScript-SemiBold.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen.storyboard</string>

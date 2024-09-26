@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyC9CE46S84w_hp7TBobS2D8Vy6xbFyLOZ8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>972721481847</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.VinhHy.Vsign</string>
+	<key>PROJECT_ID</key>
+	<string>vinhhyvsign</string>
+	<key>STORAGE_BUCKET</key>
+	<string>vinhhyvsign.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:972721481847:ios:a40d3c36d9b7f7f1f27e72</string>
+</dict>
+</plist>

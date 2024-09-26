@@ -187,7 +187,6 @@ function BhxhScreens() {
 // Stack Tư vấn thuế
 import Tuvanthue from '../screens/tuvanthue/Tuvanthue';
 import Message from '../screens/tuvanthue/Message';
-import FullImage from '../screens/fullImage';
 import Acc2k from '../screens/Acc2k';
 import DetailAcc2k from '../screens/Acc2k/DetailAcc2k';
 import FormBaoCao from '../screens/Acc2k/FormBaoCao';
@@ -223,7 +222,6 @@ function MainNavigation() {
       <Stack.Screen name={navigationStrings.KTRUIRO} component={Ktruiro} />
       <Stack.Screen name={navigationStrings.ACCOUNT} component={Account} />
       <Stack.Screen name={navigationStrings.BUSINESS} component={Nganh} />
-      <Stack.Screen name={navigationStrings.FULLIMAGE} component={FullImage} />
       <Stack.Screen name={navigationStrings.ACC2k} component={Acc2k} />
       <Stack.Screen
         name={navigationStrings.FORMBAOCAO}

@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import <Firebase.h>
 
 #import <React/RCTBundleURLProvider.h>
 #import "RNSplashScreen.h" 
@@ -13,9 +14,16 @@
   self.initialProps = @{};
 
   [super application:application didFinishLaunchingWithOptions:launchOptions];
+  [FIRApp configure];
+  [application registerForRemoteNotifications];
   [RNSplashScreen show];
 
   return YES;
+}
+
+- (void)application:(UIApplication *)application
+ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+ [FIRMessaging messaging].APNSToken = deviceToken;
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge

@@ -101,8 +101,8 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#fff',
     shadowColor: '#000',
-    shadowOffset: {width: 1, height: 1},
-    shadowOpacity: 0.4,
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.1,
     shadowRadius: 3,
     elevation: 5,
   },

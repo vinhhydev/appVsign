@@ -21,18 +21,13 @@ linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
   use_frameworks! :linkage => linkage.to_sym
+ 
 end
 
 target 'appvsign' do
   config = use_native_modules!
   use_frameworks! :linkage => :static
-  # enable Video caching
-  if ENV['RNV_SAMPLE_ENABLE_ADS']
-    $RNVideoUseGoogleIMA = true
-  end
-  if ENV['RNV_SAMPLE_VIDEO_CACHING']
-    $RNVideoUseVideoCaching = true
-  end
+  $RNFirebaseAsStaticFramework = true
   # Flags change depending on the env values.
   flags = get_default_flags()
 
@@ -58,7 +53,7 @@ target 'appvsign' do
     # Pods for testing
   end
  
-
+pod 'RNFS', :path => '../node_modules/react-native-fs'
   post_install do |installer|
     react_native_post_install(
       installer,

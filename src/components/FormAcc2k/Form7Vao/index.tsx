@@ -28,6 +28,8 @@ import navigationStrings from '../../../../shared/navigationStrings';
 import {showAlert} from '../../notifications/showAlert';
 import RenderItem from './RenderItem';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import FileViewer from 'react-native-file-viewer';
+import RNFS from 'react-native-fs';
 
 type ThueSuat = {
   label: string;
@@ -244,6 +246,20 @@ const Form7Vao = (data: IDataBaoCao) => {
         }
       });
   };
+  const openFileExcel = () =>{
+    const upload = `https://acc2k.com/upload/${nameExcel}`;
+    const localFile = `${RNFS.DocumentDirectoryPath}/${nameExcel}`;
+    const options = {
+      fromUrl: upload,
+      toFile: localFile
+    };
+    RNFS.downloadFile(options).promise.then(()=>{
+      FileViewer.open(localFile).then((va)=>{
+        console.log("OPEN SUCCES", va);
+
+      })
+    })
+  }
 
   return (
     <>
@@ -334,7 +350,7 @@ const Form7Vao = (data: IDataBaoCao) => {
             )}
           </TouchableOpacity>
           {resultData.length > 0 && (
-            <TouchableOpacity style={formStyles.touchCancel}>
+            <TouchableOpacity style={formStyles.touchCancel} onPress={()=>openFileExcel()}>
               <Text style={formStyles.textTouchCancel}>Xuất Excel</Text>
             </TouchableOpacity>
           )}
